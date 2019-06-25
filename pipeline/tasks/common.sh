@@ -38,7 +38,8 @@ function login_to_cf_uaa() {
 function login_to_bosh_uaa() {
 	echo "Getting BOSH director IP..."
 	director_id=$($CURL --path=/api/v0/deployed/products | jq -r '.[] | select (.type == "p-bosh") | .guid')
-	director_ip=$($CURL --path=/api/v0/deployed/products/$director_id/static_ips | jq -r .[0].ips[0])
+	#director_ip=$($CURL --path=/api/v0/deployed/products/$director_id/static_ips | jq -r .[0].ips[0])
+	director_ip=34.66.117.164
 
 	echo "Getting BOSH UAA creds..."
 	uaa_login_password=$($CURL --path=/api/v0/deployed/products/$director_id/credentials/.director.uaa_login_client_credentials | jq -r .credential.value.password)
